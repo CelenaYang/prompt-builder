@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Builder - 圖片生成 Prompt 組合工具</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="pageLoading" class="page-loading hidden" aria-live="polite">
+      <div class="page-loading-box">
+        <div class="page-loading-spinner"></div>
+        <p id="pageLoadingText">資料載入中...</p>
+      </div>
+    </div>
+    <header class="page-header">
+      <a href="index.html" class="back-link">← 回範本列表</a>
+      <h1 id="builderTitle">範本建構器</h1>
+    </header>
+
+    <main class="builder-container">
+      <section class="builder-left">
+        <div class="template-info">
+          <img id="builderThumb" src="" alt="範本縮圖" />
+          <h2 id="builderTemplateId"></h2>
+        </div>
+
+        <form id="builderForm" class="builder-form">
+          <label>活動目的（必填）
+            <input id="goal" name="goal" />
+          </label>
+
+          <label>活動內容（必填）
+            <textarea id="content" name="content" rows="4"></textarea>
+          </label>
+
+          <label>素材規劃需求（必填）
+            <textarea id="asset_plan" name="asset_plan" rows="3"></textarea>
+          </label>
+
+          <label>主標（選填）
+            <input id="headline" name="headline" />
+          </label>
+
+          <label>副標（選填）
+            <input id="subhead" name="subhead" />
+          </label>
+
+          <div class="form-actions">
+            <button type="button" id="generateBtn" class="btn btn-primary">生成 Prompt</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="builder-right">
+        <div class="tabs">
+          <div class="tab-buttons" role="tablist">
+            <button class="tab-btn active" data-platform="gpt">GPT</button>
+            <button class="tab-btn" data-platform="gemini">Gemini</button>
+            <button class="tab-btn" data-platform="mj">MJ</button>
+            <button class="tab-btn" data-platform="canva">Canva</button>
+          </div>
+
+          <div class="tab-content">
+            <pre id="platformOutput" class="output" aria-live="polite"></pre>
+            <div class="actions">
+              <button id="copyBtn" class="btn btn-secondary">複製當前頁籤</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

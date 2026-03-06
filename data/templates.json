@@ -1,0 +1,34 @@
+[
+  {
+    "id": "OG001",
+    "title": "OG 範本",
+    "thumbnail": "https://via.placeholder.com/640x360?text=OG001",
+    "preview": "https://via.placeholder.com/900x500?text=OG001+Preview",
+    "designTone": "高飽和紅金風格",
+    "elementBreakdown": "主視覺角色 + 金色裝飾",
+    "visualIdentity": "紅金配色、古典紋樣",
+    "imageStyle": "電影感打光，高飽和、高對比",
+    "layoutLogic": "中央主視覺，左右配文案與 CTA",
+    "gptTemplate": "請設計一張節慶海報，色調以紅金為主，突出主視覺角色，帶有華麗金色裝飾。",
+    "gptNegative": "low resolution, watermark",
+    "geminiTemplate": "Festive poster, red and gold palette, ornate decorations, central character, cinematic lighting",
+    "midjourneyTemplate": "A festive poster with a heroic central character, rich red and gold tones, ornate decorations, cinematic lighting, high saturation, intricate details, 4k",
+    "mjNegative": "text, logo, watermark",
+    "canvaTemplate": "Red background with gold accents, space for headline and CTA"
+  },
+  {
+    "id": "OG002",
+    "title": "清新風 範本",
+    "thumbnail": "https://via.placeholder.com/640x360?text=OG002",
+    "preview": "https://via.placeholder.com/900x500?text=OG002+Preview",
+    "designTone": "清新綠意風",
+    "elementBreakdown": "植物元素 + 簡潔文字",
+    "visualIdentity": "自然、輕盈、親和",
+    "imageStyle": "柔和自然光、淺色系",
+    "layoutLogic": "左圖右文或上下排列，保持留白",
+    "gptTemplate": "請設計一張清新風格宣傳圖，使用溫和的綠色調與植物元素，適合春季活動。",
+    "geminiTemplate": "Fresh spring promotional image, soft green palette, botanical elements, clean typography",
+    "midjourneyTemplate": "A fresh spring promotional image with soft green palette, botanical elements, clean typography, soft natural lighting, minimal composition, 4k",
+    "canvaTemplate": "Light green background, botanical illustrations, placeholder for text"
+  }
+]

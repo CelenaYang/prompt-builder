@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>範本列表 - 圖片生成 Prompt 組合工具</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="pageLoading" class="page-loading hidden" aria-live="polite">
+      <div class="page-loading-box">
+        <div class="page-loading-spinner"></div>
+        <p id="pageLoadingText">資料載入中...</p>
+      </div>
+    </div>
+    <header class="page-header">
+      <h1>範本列表</h1>
+    </header>
+
+    <main class="grid-container">
+      <div id="grid" class="grid"></div>
+    </main>
+
+    <!-- Modal -->
+    <div id="modalOverlay" class="modal-overlay hidden" tabindex="-1">
+      <div class="modal" role="dialog" aria-modal="true">
+        <button class="modal-close" id="modalCloseBtn" aria-label="關閉">✕</button>
+        <div class="modal-content">
+          <div class="modal-left">
+            <img id="modalThumb" src="" alt="範本縮圖" />
+            <div class="modal-left-actions">
+              <button id="useTemplateBtn" class="btn btn-primary">使用此範本</button>
+              <button id="modalCloseSecondary" class="btn btn-secondary">關閉</button>
+            </div>
+          </div>
+          <div class="modal-right">
+            <h2 id="modalTitle"></h2>
+            <div class="meta-list" id="modalMeta"></div>
+            <div class="meta-details" id="modalDetails"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
