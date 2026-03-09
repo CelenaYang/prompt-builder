@@ -87,7 +87,7 @@ function renderGrid(templates){
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
-      <img src="${t.thumbnail || ''}" alt="${escapeHtml(t.title)}" />
+      <img src="${getImageUrl(t.thumbnail)}" alt="${escapeHtml(t.title)}" />
       <div class="card-body">
         <h3 class="card-title">${escapeHtml(t.title)}</h3>
         <div class="card-meta">${escapeHtml(t.designTone || '')}</div>
@@ -107,7 +107,7 @@ function openModal(templateId){
   const details = document.getElementById('modalDetails');
   const useBtn = document.getElementById('useTemplateBtn');
 
-  thumb.src = tmpl.preview || tmpl.thumbnail || '';
+  thumb.src = getTemplateImage(tmpl);
   title.textContent = `${tmpl.id} — ${tmpl.title}`;
   meta.innerHTML = `<p><strong>設計基調：</strong>${escapeHtml(tmpl.designTone||'')}</p>`;
   details.innerHTML = `
@@ -188,7 +188,7 @@ function renderBuilderTemplateInfo(tmpl){
   const thumb = document.getElementById('builderThumb');
   const idEl = document.getElementById('builderTemplateId');
   titleEl.textContent = tmpl.title || '範本建構器';
-  thumb.src = tmpl.preview || tmpl.thumbnail || '';
+  thumb.src = getTemplateImage(tmpl);
   idEl.textContent = tmpl.id;
 }
 
@@ -303,3 +303,29 @@ function saveFormState(){
 function escapeHtml(s){ return String(s||'').replace(/[&<>\\"]/g, c=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
 export {};
+
+function getImageUrl(path){
+  const raw = String(path || '').trim();
+  if(!raw) return '';
+
+  if(raw.startsWith('http://') || raw.startsWith('https://') || raw.startsWith('./') || raw.startsWith('../')){
+    return raw;
+  }
+
+  return `./image/${raw}`;
+}
+
+function hasUsableImage(path){
+  const raw = String(path || '').trim();
+  if(!raw) return false;
+
+  const invalidValues = ['<之後更新>', '之後更新', '待補', '待更新', 'null', 'undefined'];
+  return !invalidValues.includes(raw);
+}
+
+function getTemplateImage(tmpl){
+  if(!tmpl || typeof tmpl !== 'object') return '';
+  if(hasUsableImage(tmpl.preview)) return getImageUrl(tmpl.preview);
+  if(hasUsableImage(tmpl.thumbnail)) return getImageUrl(tmpl.thumbnail);
+  return '';
+}
