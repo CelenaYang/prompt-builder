@@ -127,7 +127,7 @@ function openModal(templateId){
 
   useBtn.onclick = () => {
   closeModal();
-  const url = `${window.location.origin}/builder?id=${encodeURIComponent(tmpl.id)}`;
+  const url = `./builder.html?id=${encodeURIComponent(tmpl.id)}`;
   window.location.href = url;
 };
 }
