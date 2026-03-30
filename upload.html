@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>上傳範本 - Prompt Builder</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body style="display:none;">
+    <header class="page-header">
+      <div class="page-header-top">
+        <div class="page-title-group">
+          <h1>上傳範本</h1>
+          <a href="./index.html" class="btn btn-secondary">回列表</a>
+        </div>
+
+        <nav class="page-nav">
+          <button class="btn btn-secondary" id="navIndexBtn">範本列表</button>
+          <button class="btn btn-primary active" id="navUploadBtn">上傳範本</button>
+          <button class="btn btn-secondary" id="navPdfBtn">PDF轉圖片</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="site-outer">
+      <div class="content-1200">
+        <div class="upload-layout">
+
+          <!-- 左欄 Card -->
+          <div class="upload-left card">
+            <div class="upload-dropzone" id="dropzone">
+              拖曳圖片或點擊上傳
+              <input type="file" id="imageInput" accept="image/*" hidden />
+            </div>
+
+            <div class="preview-box">
+              <img id="previewImage" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect fill='%23eee' width='100%' height='100%'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23999' font-size='20'>預覽</text></svg>" alt="預覽圖" />
+            </div>
+
+            <p id="uploadStatus" class="muted">尚未上傳圖片</p>
+          </div>
+
+          <!-- 右欄 Card (表單) -->
+          <div class="upload-right">
+            <form id="uploadForm">
+              <h2>基本資訊</h2>
+
+              <div class="field">
+                <label>標題</label>
+                <input id="title" name="title" required />
+              </div>
+
+              <div class="field">
+                <label>分類</label>
+                <input id="category" name="category" />
+              </div>
+
+              <div class="field">
+                <label>縮圖（自動填入）</label>
+                <input id="thumbnail" name="thumbnail" readonly />
+              </div>
+
+              <div class="field">
+                <label>設計基調</label>
+                <input id="designTone" name="designTone" />
+              </div>
+
+              <div class="field">
+                <label>元素拆解</label>
+                <textarea id="elementBreakdown"></textarea>
+              </div>
+
+              <div class="field">
+                <label>視覺識別</label>
+                <textarea id="visualIdentity"></textarea>
+              </div>
+
+              <h2>Prompt 設定</h2>
+
+              <div class="field">
+                <label>GPT Prompt</label>
+                <textarea id="gptTemplate"></textarea>
+              </div>
+
+              <div class="field">
+                <label>GPT Negative</label>
+                <textarea id="gptNegative"></textarea>
+              </div>
+
+              <div class="field">
+                <label>Gemini Prompt</label>
+                <textarea id="geminiTemplate"></textarea>
+              </div>
+
+              <div class="field">
+                <label>Midjourney Prompt</label>
+                <textarea id="midjourneyTemplate"></textarea>
+              </div>
+
+              <div class="field">
+                <label>MJ Negative</label>
+                <textarea id="mjNegative"></textarea>
+              </div>
+
+              <div class="field">
+                <label>Canva Template</label>
+                <textarea id="canvaTemplate"></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn-primary">送出範本</button>
+                <a class="btn btn-secondary" href="./index.html">取消</a>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="js/upload.js"></script>
+  </body>
+</html>

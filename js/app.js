@@ -15,6 +15,8 @@ const state = {
   templates: [],
   selectedTemplateId: null,
   formState: loadFormState(),
+  // MOD: 新增 permissions 狀態，用於控制上傳範本的顯示權限
+  permissions: null,
   activePlatform: 'gpt'
 };
 
@@ -76,7 +78,9 @@ async function loadTemplates(){
     throw new Error('API 資料格式不正確');
   }
 
+  // MOD: 儲存 templates，並讀取 API 回傳的 permissions（若有）
   state.templates = json.data;
+  state.permissions = json.permissions || { allowUpload:false };
 }
 
 function renderGrid(templates){
@@ -287,7 +291,24 @@ function copyOutput(){
 
 /* ----- index events (attach listeners on index) ----- */
 function attachIndexEvents(){
-  // nothing else for now; modal handlers are set when opening modal
+  // MOD: 若使用者有上傳權限，顯示並綁定上傳按鈕
+  const uploadBtn = document.getElementById('uploadEntryBtn');
+
+  // 主選單按鈕綁定
+  const navIndex = document.getElementById('navIndexBtn');
+  const navUpload = document.getElementById('navUploadBtn');
+  const navPdf = document.getElementById('navPdfBtn');
+
+  if(navIndex) navIndex.onclick = () => { /* index: 不跳頁 */ };
+  if(navUpload) navUpload.onclick = () => { window.location.href = './upload.html'; };
+  if(navPdf) navPdf.onclick = () => { alert('待更新'); };
+
+  if(uploadBtn && state.permissions?.allowUpload){
+    uploadBtn.classList.remove('hidden');
+    uploadBtn.onclick = () => {
+      window.location.href = './upload.html';
+    };
+  }
 }
 
 /* ----- form state persistence ----- */
