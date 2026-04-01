@@ -301,7 +301,7 @@ function attachIndexEvents(){
 
   if(navIndex) navIndex.onclick = () => { /* index: 不跳頁 */ };
   if(navUpload) navUpload.onclick = () => { window.location.href = './upload.html'; };
-  if(navPdf) navPdf.onclick = () => { alert('待更新'); };
+  if(navPdf) navPdf.onclick = () => { window.location.href = './pdf.html'; };
 
   if(uploadBtn && state.permissions?.allowUpload){
     uploadBtn.classList.remove('hidden');
