@@ -521,6 +521,21 @@ input, textarea {
   text-align:center;
 }
 
+/* Multi-file PDF file list styles */
+.pdf-file-list{ display:flex; flex-direction:column; gap:12px; max-height:360px; overflow:auto; }
+.pdf-file-card{ background:#fff; border:1px solid #f1d0df; border-radius:12px; padding:12px; display:flex; flex-direction:column; gap:8px }
+.pdf-file-row{ display:flex; align-items:center; justify-content:space-between; gap:12px }
+.pdf-file-meta{ display:flex; flex-direction:column }
+.pdf-file-name{ font-weight:700 }
+.pdf-file-pages{ font-size:13px; color:var(--muted) }
+.pdf-file-actions{ display:flex; gap:8px }
+.btn-sm{ padding:6px 8px; font-size:13px; border-radius:8px }
+.pdf-file-controls{ display:flex; flex-direction:column }
+.pdf-file-controls .pdf-pages-input{ margin-top:6px }
+
+/* small responsive tweaks */
+@media (max-width:900px){ .pdf-preview-card{ padding:10px } .pdf-file-list{ max-height:220px } }
+
 .pdf-preview-page{
   font-size:16px;
   font-weight:700;
@@ -555,3 +570,91 @@ input, textarea {
   }
 
 }
+
+/* ===== 新增：PDF 主畫面置中、上方上傳區、兩張功能卡、popover 預覽 ===== */
+
+/* 讓 main 容器在 pdf 頁面呈現為置中主區塊 */
+main.container{
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+}
+
+/* 上傳區（置頂、乾淨） */
+#pdf-upload-panel{ width:100%; }
+#pdf-upload-panel .pdf-dropzone{ width:100%; min-height:86px; border-radius:12px; }
+
+/* 已上傳小膠囊按鈕 */
+.uploaded-count-btn{
+  background:#fff;
+  border:1px solid #eee;
+  padding:6px 12px;
+  border-radius:999px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 6px 18px rgba(31,41,55,0.06);
+}
+
+/* 動作區：兩張卡片（桌機左右、手機上下） */
+.action-grid{ width:100%; display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
+@media (max-width:900px){ .action-grid{ grid-template-columns:1fr; } }
+
+/* 卡片保持一致樣式（覆蓋） */
+.pdf-card{ width:100%; box-shadow:var(--shadow); border-radius:12px; border:1px solid var(--border); background:var(--surface); }
+
+/* 預覽次要顯示：小圖橫向排列在上傳區下方 */
+.pdf-preview-grid{ display:flex; flex-direction:row; gap:10px; overflow:auto; align-items:flex-start; }
+
+/* Popover（彈跳框）樣式與遮罩：當顯示時 uploaded-popover 會移除 .hidden 或 inline style */
+#uploadedPopover{
+  position: fixed;
+  right: 24px;
+  top: 96px;
+  width: 760px;
+  max-width: calc(100% - 48px);
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 20px 48px rgba(31,41,55,0.18);
+  z-index: 10001;
+  display: none;
+}
+
+/* 使用 pseudo-element 畫遮罩（遮罩在 popover 顯示時出現） */
+#uploadedPopover::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.36);
+  z-index: 10000;
+  display: none;
+}
+
+/* 當 popover 顯示（JS 會移除 hidden 並改 display） */
+#uploadedPopover:not(.hidden){ display:block; }
+#uploadedPopover:not(.hidden)::before{ display:block; }
+
+/* popover 內部：檔案清單與縮圖 */
+#pdfFileList{ max-height:320px; overflow:auto; padding-right:8px; }
+/* preview container for page (horizontal small thumbnails) */
+#pdfPreviewGrid{ display:flex !important; flex-direction:row; gap:10px; max-height:160px; overflow:auto; align-items:flex-start; }
+
+/* small preview card styling */
+.pdf-preview-card.small{ width:140px; padding:8px; opacity:0.95; border-radius:8px; border:1px solid #f1d0df; background:#fffafb; display:flex; flex-direction:column; align-items:center; }
+.pdf-preview-card.small canvas{ width:120px; height:auto; border-radius:6px; }
+
+/* 小型預覽卡弱化樣式 */
+.pdf-preview-card.small{ width:140px; padding:8px; opacity:0.86; border-radius:8px; border:1px solid #f1d0df; background:#fffafb; }
+
+/* popover header/close */
+.popover-close{ background:transparent; border:none; font-size:18px; cursor:pointer; }
+
+/* Merge list 在 popover 顯示時採用窄版樣式 */
+.merge-file-list{ max-height:320px; overflow:auto; }
+
+/* 少量微調：讓卡片內元素不超出 */
+.card-body{ width:100%; }
