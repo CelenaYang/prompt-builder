@@ -160,6 +160,8 @@ if(form){
         designTone: document.getElementById('designTone') ? document.getElementById('designTone').value : '',
         elementBreakdown: document.getElementById('elementBreakdown').value,
         visualIdentity: document.getElementById('visualIdentity').value,
+        imageStyle: document.getElementById('imageStyle') ? document.getElementById('imageStyle').value : '',
+        layoutLogic: document.getElementById('layoutLogic') ? document.getElementById('layoutLogic').value : '',
 
         gptTemplate: document.getElementById('gptTemplate').value,
         gptNegative: document.getElementById('gptNegative').value,
